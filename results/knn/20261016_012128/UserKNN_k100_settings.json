@@ -1,0 +1,5 @@
+{
+  "knn_method": "user",
+  "k": 100,
+  "checkpoint_dir": "saved/20261016_012128/UserKNN_k100"
+}

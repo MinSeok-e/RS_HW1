@@ -1,0 +1,5 @@
+Collecting thop==0.1.1.post2209072238
+  Downloading thop-0.1.1.post2209072238-py3-none-any.whl.metadata (2.7 kB)
+Downloading thop-0.1.1.post2209072238-py3-none-any.whl (15 kB)
+Installing collected packages: thop
+Successfully installed thop-0.1.1.post2209072238
