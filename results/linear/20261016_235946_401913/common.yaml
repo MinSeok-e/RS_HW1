@@ -1,0 +1,30 @@
+seed: 2020
+reproducibility: true
+
+use_gpu: false
+worker: 0
+show_progress: false
+
+load_col:
+  inter: [user_id, item_id, rating, timestamp]
+threshold: null
+
+eval_args:
+  split:
+    RS: [0.8, 0.1, 0.1]
+  group_by: user
+  order: RO
+  mode: full
+
+metrics: [NDCG, Recall, Precision]
+topk: [10]
+valid_metric: NDCG@10
+metric_decimal_place: 6
+
+epochs: 300
+eval_step: 1
+stopping_step: 10
+train_batch_size: 2048
+eval_batch_size: 4096
+learning_rate: 0.001
+weight_decay: 0.0

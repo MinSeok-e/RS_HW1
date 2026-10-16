@@ -1,0 +1,3 @@
+run_id,model,parameters,seed,valid_ndcg@10,valid_recall@10,valid_precision@10,test_ndcg@10,test_recall@10,test_precision@10
+20261016_235946_401913,SLIMElastic,"{""alpha"": 0.2, ""hide_item"": true, ""l1_ratio"": 0.02, ""positive_only"": true}",2020,0.255344,0.236109,0.174337,0.323564,0.274997,0.216543
+20261016_235946_401913,EASE,"{""reg_weight"": 250.0}",2020,0.256325,0.238864,0.175504,0.329506,0.280506,0.220573
