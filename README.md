@@ -40,8 +40,13 @@ conda activate rs_hw1_py310
 | 시드 | 2020 |
 | 상호작용 처리 | 평점 임계값 없이 모든 관측 상호작용 사용 |
 | 평가 방식 | 전체 후보를 대상으로 하는 full-sort 순위 평가 |
-| 평가 지표 | NDCG@10, Recall@10, Precision@10 |
+| 공통 평가 지표 | NDCG@10, Recall@10, Precision@10 |
+| KNN 추가 평가 지표 | MRR@10, Hit@10 |
 | 설정·체크포인트 선택 기준 | 검증 데이터의 NDCG@10 |
+
+KNN은 `scripts/run_knn.py`의 `config_dict`에서 평가 지표를 지정하여
+RecBole의 기본 지표 5개를 모두 계산한다. 실제 적용한 목록은 실행별 `*_settings.json`에도 저장한다.
+설정 선택 기준은 공통 설정의 NDCG@10을 사용한다.
 
 결과 CSV에서 `valid_`는 검증 성능, `test_`는 테스트 성능이다.
 그래프에는 테스트 성능을 표시하였다. 최종 설정은 검증 성능으로 선택하므로,
@@ -67,7 +72,7 @@ set -o pipefail
 
 # KNN 작동 확인 및 본실험
 python -u scripts/run_knn.py --smoke 2>&1 | tee "logs/knn_smoke_$(date +%Y%m%d_%H%M%S).log"
-python -u scripts/run_knn.py 2>&1 | tee "logs/knn_full_$(date +%Y%m%d_%H%M%S).log"
+python -u scripts/run_knn.py 2>&1 | tee "logs/knn_five_metrics_$(date +%Y%m%d_%H%M%S).log"
 
 # BPR 정규화 검증·2 epoch 시험 학습 및 본실험
 python -u scripts/check_bpr.py 2>&1 | tee "logs/bpr_check_$(date +%Y%m%d_%H%M%S).log"
@@ -81,6 +86,9 @@ python -u scripts/run_linear.py 2>&1 | tee "logs/linear_full_$(date +%Y%m%d_%H%M
 `results/knn/20261016_012128`을 가리킨다. KNN을 재실행한 결과와 비교하려면
 이 경로를 새 KNN 결과 디렉터리로 변경한다. 비교 전에 저장된 KNN 공통 설정과
 현재 공통 설정이 같은지 스크립트에서 검사한다.
+저장된 과제 3번 비교는 기존 KNN 실행 결과를 사용한다. 5개 지표로 재실행한
+`results/knn/20261017_002151`에서 기존 NDCG·Recall·Precision의 검증·테스트 수치 60개가
+모두 원래 결과와 동일함을 확인하였다.
 
 ### 모델별 구현 설정
 
@@ -98,37 +106,48 @@ python -u scripts/run_linear.py 2>&1 | tee "logs/linear_full_$(date +%Y%m%d_%H%M
 
 ## 1. ItemKNN·UserKNN 결과
 
-각 그래프는 k에 따른 테스트 NDCG@10, Recall@10, Precision@10을 나타낸다.
+각 그래프는 k에 따른 테스트 NDCG@10, Recall@10, Precision@10, MRR@10, Hit@10을 나타낸다.
+y축의 `Test metric value`는 각 지표를 테스트 데이터에서 계산한 값이다.
+각 점에는 소수점 넷째 자리까지 값을 표시하며, 두 모델의 y축 범위는 동일하다.
 
-![ItemKNN의 이웃 수에 따른 성능](figures/knn/20261016_012128/ItemKNN.png)
+저장된 결과로 그래프만 다시 생성하려면 다음 명령어를 실행한다.
 
-![UserKNN의 이웃 수에 따른 성능](figures/knn/20261016_012128/UserKNN.png)
+```bash
+python scripts/plot_knn.py \
+  --results-dir results/knn/20261017_002151 \
+  --figure-dir figures/knn/20261017_002151
+```
 
-두 모델 모두 k=1에서 100까지 세 지표가 개선되었고, k=500에서는 하락하였다.
+![ItemKNN의 이웃 수에 따른 성능](figures/knn/20261017_002151/ItemKNN.png)
+
+![UserKNN의 이웃 수에 따른 성능](figures/knn/20261017_002151/UserKNN.png)
+
+두 모델 모두 k=1에서 100까지 다섯 지표가 개선되었고, k=500에서는 하락하였다.
 NDCG@10은 ItemKNN이 0.1976에서 0.2834로, UserKNN이 0.1050에서 0.2873으로 증가하여
 UserKNN이 k 변화에 더 민감하였다. 이웃을 지나치게 많이 포함하면 유사성이 낮은 이웃의 영향으로
 성능이 낮아질 수 있다고 해석할 수 있다.
 
 검증 NDCG@10으로 선택한 설정의 테스트 결과는 다음과 같다.
 
-| 모델 | 선택된 k | 검증 NDCG@10 | 테스트 NDCG@10 | 테스트 Recall@10 | 테스트 Precision@10 |
-|---|---:|---:|---:|---:|---:|
-| ItemKNN | 500 | 0.222379 | 0.274381 | 0.235383 | 0.180700 |
-| UserKNN | 100 | 0.234532 | 0.287261 | 0.244185 | 0.188547 |
+| 모델 | 선택된 k | 검증 NDCG@10 | 테스트 NDCG@10 | 테스트 Recall@10 | 테스트 Precision@10 | 테스트 MRR@10 | 테스트 Hit@10 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| ItemKNN | 500 | 0.222379 | 0.274381 | 0.235383 | 0.180700 | 0.457523 | 0.756098 |
+| UserKNN | 100 | 0.234532 | 0.287261 | 0.244185 | 0.188547 | 0.483439 | 0.780488 |
 
-이 선택 기준에서는 UserKNN이 세 테스트 지표에서 더 높았다.
-다만 같은 k=100에서는 UserKNN의 NDCG@10이 더 높고 ItemKNN의 Recall@10과 Precision@10이 더 높았다.
+이 선택 기준에서는 UserKNN이 다섯 테스트 지표에서 더 높았다.
+다만 같은 k=100에서는 UserKNN의 NDCG@10과 MRR@10이 더 높고,
+ItemKNN의 Recall@10, Precision@10, Hit@10이 더 높았다.
 따라서 어느 모델이 더 좋은지는 k와 평가 지표에 따라 달라지며, 이번 한 시드의 결과로 해석한다.
 
-테스트 그래프에서 두 모델 모두 k=100이 최고였지만, 과제 3번의 ItemKNN 비교 기준은
+테스트 그래프에서 두 모델 모두 다섯 지표가 k=100에서 최고였지만, 과제 3번의 ItemKNN 비교 기준은
 검증 NDCG@10으로 선택한 k=500이다.
-전체 수치는 [KNN 결과 CSV](results/knn/20261016_012128/metrics.csv)에서 확인할 수 있다.
+전체 수치는 [KNN 5개 지표 결과 CSV](results/knn/20261017_002151/metrics.csv)에서 확인할 수 있다.
 
 ## 결과 파일
 
 | 실험 | 결과 CSV | 그래프 디렉터리 |
 |---|---|---|
-| KNN | [metrics.csv](results/knn/20261016_012128/metrics.csv) | [figures/knn/20261016_012128](figures/knn/20261016_012128) |
+| KNN (5개 지표) | [metrics.csv](results/knn/20261017_002151/metrics.csv) | [figures/knn/20261017_002151](figures/knn/20261017_002151) |
 | BPR | [metrics.csv](results/bpr/20261016_233539_473703/metrics.csv) | [figures/bpr/20261016_233539_473703](figures/bpr/20261016_233539_473703) |
 | ItemKNN·SLIM·EASE 비교 | [comparison.csv](results/linear/20261016_235946_401913/comparison.csv) | [figures/linear/20261016_235946_401913](figures/linear/20261016_235946_401913) |
 

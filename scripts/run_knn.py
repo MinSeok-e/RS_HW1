@@ -7,12 +7,11 @@ from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 import pandas as pd
 import torch
 from recbole.quick_start import run_recbole
+
+from plot_knn import plot_knn_metrics
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--smoke", action="store_true")
@@ -32,6 +31,7 @@ figure_dir.mkdir(parents=True, exist_ok=True)
 # Preserve the settings and code used in this run.
 shutil.copy2("configs/common.yaml", output_dir / "common.yaml")
 shutil.copy2(__file__, output_dir / "run_knn.py")
+shutil.copy2(Path(__file__).with_name("plot_knn.py"), output_dir / "plot_knn.py")
 
 k_values = [100] if args.smoke else [1, 5, 10, 100, 500]
 rows = []
@@ -48,6 +48,7 @@ for method, model_label in [("item", "ItemKNN"), ("user", "UserKNN")]:
             handler.close()
 
         overrides = {
+            "metrics": ["Recall", "MRR", "NDCG", "Hit", "Precision"],
             "knn_method": method,
             "k": k,
             "checkpoint_dir": str(Path("saved") / run_id / experiment),
@@ -88,26 +89,7 @@ for method, model_label in [("item", "ItemKNN"), ("user", "UserKNN")]:
 df = pd.DataFrame(rows)
 
 if not args.smoke:
-    for model_label in ["ItemKNN", "UserKNN"]:
-        subset = df[df["model"] == model_label].sort_values("k")
-
-        fig, ax = plt.subplots(figsize=(7, 4.5))
-        for metric in ["ndcg@10", "recall@10", "precision@10"]:
-            ax.plot(
-                subset["k"].astype(str),
-                subset[f"test_{metric}"],
-                marker="o",
-                label=metric.upper(),
-            )
-
-        ax.set_title(f"{model_label} on MovieLens 100K")
-        ax.set_xlabel("Number of neighbors (k)")
-        ax.set_ylabel("Test score")
-        ax.grid(alpha=0.25)
-        ax.legend()
-        fig.tight_layout()
-        fig.savefig(figure_dir / f"{model_label}.png", dpi=200)
-        plt.close(fig)
+    plot_knn_metrics(df, figure_dir)
 
     # Choose each model's k using validation performance.
     best = df.loc[df.groupby("model")["valid_ndcg@10"].idxmax()]
@@ -116,7 +98,8 @@ if not args.smoke:
     print("\nBest settings selected by validation NDCG@10:")
     print(best[[
         "model", "k", "valid_ndcg@10",
-        "test_ndcg@10", "test_recall@10", "test_precision@10"
+        "test_ndcg@10", "test_recall@10", "test_precision@10",
+        "test_mrr@10", "test_hit@10"
     ]].to_string(index=False))
 
 print(f"\nResults: {output_dir}")

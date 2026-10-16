@@ -1,0 +1,12 @@
+{
+  "metrics": [
+    "Recall",
+    "MRR",
+    "NDCG",
+    "Hit",
+    "Precision"
+  ],
+  "knn_method": "user",
+  "k": 5,
+  "checkpoint_dir": "saved/20261017_002151/UserKNN_k5"
+}
