@@ -1,0 +1,132 @@
+{
+  "gpu_id": "0",
+  "worker": 0,
+  "use_gpu": false,
+  "seed": 2020,
+  "state": "INFO",
+  "reproducibility": true,
+  "data_path": "/opt/homebrew/Caskroom/miniconda/base/envs/rs_hw1_py310/lib/python3.10/site-packages/recbole/config/../dataset_example/ml-100k",
+  "checkpoint_dir": "/Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim32_lambda0.1",
+  "show_progress": false,
+  "save_dataset": false,
+  "dataset_save_path": null,
+  "save_dataloaders": false,
+  "dataloaders_save_path": null,
+  "log_wandb": false,
+  "wandb_project": "recbole",
+  "shuffle": true,
+  "epochs": 300,
+  "train_batch_size": 2048,
+  "learner": "adam",
+  "learning_rate": 0.001,
+  "train_neg_sample_args": {
+    "distribution": "uniform",
+    "sample_num": 1,
+    "alpha": 1.0,
+    "dynamic": false,
+    "candidate_num": 0
+  },
+  "eval_step": 1,
+  "stopping_step": 10,
+  "clip_grad_norm": null,
+  "weight_decay": 0.0,
+  "loss_decimal_place": 4,
+  "require_pow": true,
+  "enable_amp": false,
+  "enable_scaler": false,
+  "transform": null,
+  "eval_args": {
+    "split": {
+      "RS": [
+        0.8,
+        0.1,
+        0.1
+      ]
+    },
+    "order": "RO",
+    "group_by": "user",
+    "mode": {
+      "valid": "full",
+      "test": "full"
+    }
+  },
+  "repeatable": false,
+  "metrics": [
+    "NDCG",
+    "Recall",
+    "Precision"
+  ],
+  "topk": [
+    10
+  ],
+  "valid_metric": "NDCG@10",
+  "valid_metric_bigger": true,
+  "eval_batch_size": 4096,
+  "metric_decimal_place": 6,
+  "embedding_size": 32,
+  "field_separator": "\t",
+  "seq_separator": " ",
+  "USER_ID_FIELD": "user_id",
+  "ITEM_ID_FIELD": "item_id",
+  "RATING_FIELD": "rating",
+  "TIME_FIELD": "timestamp",
+  "seq_len": null,
+  "LABEL_FIELD": "label",
+  "threshold": null,
+  "NEG_PREFIX": "neg_",
+  "numerical_features": [],
+  "load_col": {
+    "inter": [
+      "user_id",
+      "item_id",
+      "rating",
+      "timestamp"
+    ]
+  },
+  "unload_col": null,
+  "unused_col": null,
+  "additional_feat_suffix": null,
+  "rm_dup_inter": null,
+  "val_interval": null,
+  "filter_inter_by_user_or_item": true,
+  "user_inter_num_interval": null,
+  "item_inter_num_interval": null,
+  "alias_of_user_id": null,
+  "alias_of_item_id": null,
+  "alias_of_entity_id": null,
+  "alias_of_relation_id": null,
+  "preload_weight": null,
+  "normalize_field": null,
+  "normalize_all": true,
+  "discretization": null,
+  "ITEM_LIST_LENGTH_FIELD": "item_length",
+  "LIST_SUFFIX": "_list",
+  "MAX_ITEM_LIST_LENGTH": 50,
+  "POSITION_FIELD": "position_id",
+  "HEAD_ENTITY_ID_FIELD": "head_id",
+  "TAIL_ENTITY_ID_FIELD": "tail_id",
+  "RELATION_ID_FIELD": "relation_id",
+  "ENTITY_ID_FIELD": "entity_id",
+  "kg_reverse_r": false,
+  "entity_kg_num_interval": null,
+  "relation_kg_num_interval": null,
+  "benchmark_filename": null,
+  "MODEL_TYPE": "ModelType.GENERAL",
+  "reg_lambda": 0.1,
+  "model_implementation": "RegularizedBPR",
+  "dataset": "ml-100k",
+  "model": "BPR",
+  "MODEL_INPUT_TYPE": "InputType.PAIRWISE",
+  "eval_type": "EvaluatorType.RANKING",
+  "single_spec": true,
+  "local_rank": 0,
+  "device": "cpu",
+  "valid_neg_sample_args": {
+    "distribution": "uniform",
+    "sample_num": "none"
+  },
+  "test_neg_sample_args": {
+    "distribution": "uniform",
+    "sample_num": "none"
+  }
+}

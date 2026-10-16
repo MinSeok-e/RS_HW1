@@ -1,0 +1,351 @@
+Fri 16 Oct 2026 23:35:46 INFO  Experiment: BPR_dim64_lambda0.1
+Fri 16 Oct 2026 23:35:46 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = False
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = /opt/homebrew/Caskroom/miniconda/base/envs/rs_hw1_py310/lib/python3.10/site-packages/recbole/config/../dataset_example/ml-100k
+checkpoint_dir = /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1
+show_progress = False
+save_dataset = False
+dataset_save_path = None
+save_dataloaders = False
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 300
+train_batch_size = 2048
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 10
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [0.8, 0.1, 0.1]}, 'order': 'RO', 'group_by': 'user', 'mode': {'valid': 'full', 'test': 'full'}}
+repeatable = False
+metrics = ['NDCG', 'Recall', 'Precision']
+topk = [10]
+valid_metric = NDCG@10
+valid_metric_bigger = True
+eval_batch_size = 4096
+metric_decimal_place = 6
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id', 'rating', 'timestamp']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = None
+item_inter_num_interval = None
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = True
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+kg_reverse_r = False
+entity_kg_num_interval = None
+relation_kg_num_interval = None
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = True
+enable_amp = False
+enable_scaler = False
+transform = None
+embedding_size = 64
+numerical_features = []
+discretization = None
+MODEL_TYPE = ModelType.GENERAL
+reg_lambda = 0.1
+model_implementation = RegularizedBPR
+MODEL_INPUT_TYPE = InputType.PAIRWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cpu
+valid_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+test_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Fri 16 Oct 2026 23:35:47 INFO  ml-100k
+The number of users: 944
+Average actions of users: 106.04453870625663
+The number of items: 1683
+Average actions of items: 59.45303210463734
+The number of inters: 100000
+The sparsity of the dataset: 93.70575143257098%
+Remain Fields: ['user_id', 'item_id', 'rating', 'timestamp']
+Fri 16 Oct 2026 23:35:47 INFO  [Training]: train_batch_size = [2048] train_neg_sample_args: [{'distribution': 'uniform', 'sample_num': 1, 'alpha': 1.0, 'dynamic': False, 'candidate_num': 0}]
+Fri 16 Oct 2026 23:35:47 INFO  [Evaluation]: eval_batch_size = [4096] eval_args: [{'split': {'RS': [0.8, 0.1, 0.1]}, 'order': 'RO', 'group_by': 'user', 'mode': {'valid': 'full', 'test': 'full'}}]
+Fri 16 Oct 2026 23:35:47 INFO  RegularizedBPR(
+  (user_embedding): Embedding(944, 64)
+  (item_embedding): Embedding(1683, 64)
+  (loss): BPRLoss()
+  (embedding_reg_loss): EmbLoss()
+)
+Trainable parameters: 168128
+Fri 16 Oct 2026 23:35:47 INFO  epoch 0 training [time: 0.11s, train loss: 28.1561]
+Fri 16 Oct 2026 23:35:47 INFO  epoch 0 evaluating [time: 0.04s, valid_score: 0.005828]
+Fri 16 Oct 2026 23:35:47 INFO  valid result: 
+ndcg@10 : 0.005828    recall@10 : 0.004072    precision@10 : 0.004984
+Fri 16 Oct 2026 23:35:47 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:47 INFO  epoch 1 training [time: 0.10s, train loss: 27.9370]
+Fri 16 Oct 2026 23:35:47 INFO  epoch 1 evaluating [time: 0.04s, valid_score: 0.011320]
+Fri 16 Oct 2026 23:35:47 INFO  valid result: 
+ndcg@10 : 0.01132    recall@10 : 0.008333    precision@10 : 0.01071
+Fri 16 Oct 2026 23:35:47 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:47 INFO  epoch 2 training [time: 0.10s, train loss: 27.7548]
+Fri 16 Oct 2026 23:35:47 INFO  epoch 2 evaluating [time: 0.04s, valid_score: 0.103198]
+Fri 16 Oct 2026 23:35:47 INFO  valid result: 
+ndcg@10 : 0.103198    recall@10 : 0.075687    precision@10 : 0.087911
+Fri 16 Oct 2026 23:35:47 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:47 INFO  epoch 3 training [time: 0.11s, train loss: 27.1981]
+Fri 16 Oct 2026 23:35:47 INFO  epoch 3 evaluating [time: 0.04s, valid_score: 0.122626]
+Fri 16 Oct 2026 23:35:47 INFO  valid result: 
+ndcg@10 : 0.122626    recall@10 : 0.090422    precision@10 : 0.096607
+Fri 16 Oct 2026 23:35:47 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:47 INFO  epoch 4 training [time: 0.11s, train loss: 25.2962]
+Fri 16 Oct 2026 23:35:47 INFO  epoch 4 evaluating [time: 0.04s, valid_score: 0.115668]
+Fri 16 Oct 2026 23:35:47 INFO  valid result: 
+ndcg@10 : 0.115668    recall@10 : 0.079246    precision@10 : 0.091729
+Fri 16 Oct 2026 23:35:48 INFO  epoch 5 training [time: 0.11s, train loss: 22.5325]
+Fri 16 Oct 2026 23:35:48 INFO  epoch 5 evaluating [time: 0.04s, valid_score: 0.115124]
+Fri 16 Oct 2026 23:35:48 INFO  valid result: 
+ndcg@10 : 0.115124    recall@10 : 0.082046    precision@10 : 0.091304
+Fri 16 Oct 2026 23:35:48 INFO  epoch 6 training [time: 0.11s, train loss: 21.1063]
+Fri 16 Oct 2026 23:35:48 INFO  epoch 6 evaluating [time: 0.04s, valid_score: 0.116180]
+Fri 16 Oct 2026 23:35:48 INFO  valid result: 
+ndcg@10 : 0.11618    recall@10 : 0.086795    precision@10 : 0.091729
+Fri 16 Oct 2026 23:35:48 INFO  epoch 7 training [time: 0.11s, train loss: 20.7757]
+Fri 16 Oct 2026 23:35:48 INFO  epoch 7 evaluating [time: 0.06s, valid_score: 0.123929]
+Fri 16 Oct 2026 23:35:48 INFO  valid result: 
+ndcg@10 : 0.123929    recall@10 : 0.098777    precision@10 : 0.095334
+Fri 16 Oct 2026 23:35:48 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:48 INFO  epoch 8 training [time: 0.11s, train loss: 20.6314]
+Fri 16 Oct 2026 23:35:48 INFO  epoch 8 evaluating [time: 0.04s, valid_score: 0.132889]
+Fri 16 Oct 2026 23:35:48 INFO  valid result: 
+ndcg@10 : 0.132889    recall@10 : 0.11052    precision@10 : 0.096501
+Fri 16 Oct 2026 23:35:48 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:48 INFO  epoch 9 training [time: 0.10s, train loss: 20.5330]
+Fri 16 Oct 2026 23:35:48 INFO  epoch 9 evaluating [time: 0.04s, valid_score: 0.133953]
+Fri 16 Oct 2026 23:35:48 INFO  valid result: 
+ndcg@10 : 0.133953    recall@10 : 0.110855    precision@10 : 0.095864
+Fri 16 Oct 2026 23:35:48 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:48 INFO  epoch 10 training [time: 0.10s, train loss: 20.4940]
+Fri 16 Oct 2026 23:35:48 INFO  epoch 10 evaluating [time: 0.04s, valid_score: 0.142501]
+Fri 16 Oct 2026 23:35:48 INFO  valid result: 
+ndcg@10 : 0.142501    recall@10 : 0.124035    precision@10 : 0.100848
+Fri 16 Oct 2026 23:35:48 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:48 INFO  epoch 11 training [time: 0.10s, train loss: 20.4206]
+Fri 16 Oct 2026 23:35:48 INFO  epoch 11 evaluating [time: 0.04s, valid_score: 0.153783]
+Fri 16 Oct 2026 23:35:48 INFO  valid result: 
+ndcg@10 : 0.153783    recall@10 : 0.13359    precision@10 : 0.108059
+Fri 16 Oct 2026 23:35:48 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:49 INFO  epoch 12 training [time: 0.10s, train loss: 20.3499]
+Fri 16 Oct 2026 23:35:49 INFO  epoch 12 evaluating [time: 0.04s, valid_score: 0.154338]
+Fri 16 Oct 2026 23:35:49 INFO  valid result: 
+ndcg@10 : 0.154338    recall@10 : 0.13058    precision@10 : 0.104878
+Fri 16 Oct 2026 23:35:49 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:49 INFO  epoch 13 training [time: 0.11s, train loss: 20.3401]
+Fri 16 Oct 2026 23:35:49 INFO  epoch 13 evaluating [time: 0.04s, valid_score: 0.163470]
+Fri 16 Oct 2026 23:35:49 INFO  valid result: 
+ndcg@10 : 0.16347    recall@10 : 0.142701    precision@10 : 0.111665
+Fri 16 Oct 2026 23:35:49 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:49 INFO  epoch 14 training [time: 0.11s, train loss: 20.3334]
+Fri 16 Oct 2026 23:35:49 INFO  epoch 14 evaluating [time: 0.04s, valid_score: 0.162067]
+Fri 16 Oct 2026 23:35:49 INFO  valid result: 
+ndcg@10 : 0.162067    recall@10 : 0.149017    precision@10 : 0.113468
+Fri 16 Oct 2026 23:35:49 INFO  epoch 15 training [time: 0.10s, train loss: 20.2555]
+Fri 16 Oct 2026 23:35:49 INFO  epoch 15 evaluating [time: 0.04s, valid_score: 0.168229]
+Fri 16 Oct 2026 23:35:49 INFO  valid result: 
+ndcg@10 : 0.168229    recall@10 : 0.154279    precision@10 : 0.116331
+Fri 16 Oct 2026 23:35:49 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:49 INFO  epoch 16 training [time: 0.10s, train loss: 20.2488]
+Fri 16 Oct 2026 23:35:49 INFO  epoch 16 evaluating [time: 0.04s, valid_score: 0.169212]
+Fri 16 Oct 2026 23:35:49 INFO  valid result: 
+ndcg@10 : 0.169212    recall@10 : 0.15511    precision@10 : 0.117285
+Fri 16 Oct 2026 23:35:49 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:49 INFO  epoch 17 training [time: 0.11s, train loss: 20.2028]
+Fri 16 Oct 2026 23:35:49 INFO  epoch 17 evaluating [time: 0.04s, valid_score: 0.171267]
+Fri 16 Oct 2026 23:35:49 INFO  valid result: 
+ndcg@10 : 0.171267    recall@10 : 0.158346    precision@10 : 0.1193
+Fri 16 Oct 2026 23:35:49 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:49 INFO  epoch 18 training [time: 0.11s, train loss: 20.1826]
+Fri 16 Oct 2026 23:35:50 INFO  epoch 18 evaluating [time: 0.04s, valid_score: 0.173504]
+Fri 16 Oct 2026 23:35:50 INFO  valid result: 
+ndcg@10 : 0.173504    recall@10 : 0.15952    precision@10 : 0.121951
+Fri 16 Oct 2026 23:35:50 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:50 INFO  epoch 19 training [time: 0.12s, train loss: 20.2475]
+Fri 16 Oct 2026 23:35:50 INFO  epoch 19 evaluating [time: 0.04s, valid_score: 0.172595]
+Fri 16 Oct 2026 23:35:50 INFO  valid result: 
+ndcg@10 : 0.172595    recall@10 : 0.161941    precision@10 : 0.119936
+Fri 16 Oct 2026 23:35:50 INFO  epoch 20 training [time: 0.11s, train loss: 20.1992]
+Fri 16 Oct 2026 23:35:50 INFO  epoch 20 evaluating [time: 0.04s, valid_score: 0.174038]
+Fri 16 Oct 2026 23:35:50 INFO  valid result: 
+ndcg@10 : 0.174038    recall@10 : 0.159476    precision@10 : 0.121633
+Fri 16 Oct 2026 23:35:50 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:50 INFO  epoch 21 training [time: 0.11s, train loss: 20.1955]
+Fri 16 Oct 2026 23:35:50 INFO  epoch 21 evaluating [time: 0.04s, valid_score: 0.177242]
+Fri 16 Oct 2026 23:35:50 INFO  valid result: 
+ndcg@10 : 0.177242    recall@10 : 0.161418    precision@10 : 0.123966
+Fri 16 Oct 2026 23:35:50 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:50 INFO  epoch 22 training [time: 0.11s, train loss: 20.1458]
+Fri 16 Oct 2026 23:35:50 INFO  epoch 22 evaluating [time: 0.04s, valid_score: 0.177712]
+Fri 16 Oct 2026 23:35:50 INFO  valid result: 
+ndcg@10 : 0.177712    recall@10 : 0.165418    precision@10 : 0.124496
+Fri 16 Oct 2026 23:35:50 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:50 INFO  epoch 23 training [time: 0.11s, train loss: 20.2040]
+Fri 16 Oct 2026 23:35:50 INFO  epoch 23 evaluating [time: 0.04s, valid_score: 0.176229]
+Fri 16 Oct 2026 23:35:50 INFO  valid result: 
+ndcg@10 : 0.176229    recall@10 : 0.164362    precision@10 : 0.124814
+Fri 16 Oct 2026 23:35:50 INFO  epoch 24 training [time: 0.11s, train loss: 20.1071]
+Fri 16 Oct 2026 23:35:50 INFO  epoch 24 evaluating [time: 0.04s, valid_score: 0.175026]
+Fri 16 Oct 2026 23:35:50 INFO  valid result: 
+ndcg@10 : 0.175026    recall@10 : 0.162864    precision@10 : 0.122587
+Fri 16 Oct 2026 23:35:51 INFO  epoch 25 training [time: 0.11s, train loss: 20.1527]
+Fri 16 Oct 2026 23:35:51 INFO  epoch 25 evaluating [time: 0.04s, valid_score: 0.176118]
+Fri 16 Oct 2026 23:35:51 INFO  valid result: 
+ndcg@10 : 0.176118    recall@10 : 0.163026    precision@10 : 0.123542
+Fri 16 Oct 2026 23:35:51 INFO  epoch 26 training [time: 0.11s, train loss: 20.1444]
+Fri 16 Oct 2026 23:35:51 INFO  epoch 26 evaluating [time: 0.04s, valid_score: 0.178543]
+Fri 16 Oct 2026 23:35:51 INFO  valid result: 
+ndcg@10 : 0.178543    recall@10 : 0.165272    precision@10 : 0.125557
+Fri 16 Oct 2026 23:35:51 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:51 INFO  epoch 27 training [time: 0.11s, train loss: 20.1883]
+Fri 16 Oct 2026 23:35:51 INFO  epoch 27 evaluating [time: 0.04s, valid_score: 0.180387]
+Fri 16 Oct 2026 23:35:51 INFO  valid result: 
+ndcg@10 : 0.180387    recall@10 : 0.168783    precision@10 : 0.125663
+Fri 16 Oct 2026 23:35:51 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:51 INFO  epoch 28 training [time: 0.11s, train loss: 20.1576]
+Fri 16 Oct 2026 23:35:51 INFO  epoch 28 evaluating [time: 0.04s, valid_score: 0.178406]
+Fri 16 Oct 2026 23:35:51 INFO  valid result: 
+ndcg@10 : 0.178406    recall@10 : 0.164716    precision@10 : 0.124708
+Fri 16 Oct 2026 23:35:51 INFO  epoch 29 training [time: 0.12s, train loss: 20.0696]
+Fri 16 Oct 2026 23:35:51 INFO  epoch 29 evaluating [time: 0.04s, valid_score: 0.179241]
+Fri 16 Oct 2026 23:35:51 INFO  valid result: 
+ndcg@10 : 0.179241    recall@10 : 0.168137    precision@10 : 0.126723
+Fri 16 Oct 2026 23:35:51 INFO  epoch 30 training [time: 0.10s, train loss: 20.1111]
+Fri 16 Oct 2026 23:35:51 INFO  epoch 30 evaluating [time: 0.04s, valid_score: 0.178609]
+Fri 16 Oct 2026 23:35:51 INFO  valid result: 
+ndcg@10 : 0.178609    recall@10 : 0.164824    precision@10 : 0.12492
+Fri 16 Oct 2026 23:35:51 INFO  epoch 31 training [time: 0.11s, train loss: 20.1390]
+Fri 16 Oct 2026 23:35:52 INFO  epoch 31 evaluating [time: 0.04s, valid_score: 0.178184]
+Fri 16 Oct 2026 23:35:52 INFO  valid result: 
+ndcg@10 : 0.178184    recall@10 : 0.164585    precision@10 : 0.125239
+Fri 16 Oct 2026 23:35:52 INFO  epoch 32 training [time: 0.10s, train loss: 20.1269]
+Fri 16 Oct 2026 23:35:52 INFO  epoch 32 evaluating [time: 0.04s, valid_score: 0.180623]
+Fri 16 Oct 2026 23:35:52 INFO  valid result: 
+ndcg@10 : 0.180623    recall@10 : 0.167322    precision@10 : 0.126193
+Fri 16 Oct 2026 23:35:52 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:52 INFO  epoch 33 training [time: 0.11s, train loss: 20.1344]
+Fri 16 Oct 2026 23:35:52 INFO  epoch 33 evaluating [time: 0.04s, valid_score: 0.182897]
+Fri 16 Oct 2026 23:35:52 INFO  valid result: 
+ndcg@10 : 0.182897    recall@10 : 0.17089    precision@10 : 0.127147
+Fri 16 Oct 2026 23:35:52 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:52 INFO  epoch 34 training [time: 0.11s, train loss: 20.0922]
+Fri 16 Oct 2026 23:35:52 INFO  epoch 34 evaluating [time: 0.04s, valid_score: 0.183313]
+Fri 16 Oct 2026 23:35:52 INFO  valid result: 
+ndcg@10 : 0.183313    recall@10 : 0.172587    precision@10 : 0.12842
+Fri 16 Oct 2026 23:35:52 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:52 INFO  epoch 35 training [time: 0.10s, train loss: 20.1165]
+Fri 16 Oct 2026 23:35:52 INFO  epoch 35 evaluating [time: 0.04s, valid_score: 0.179532]
+Fri 16 Oct 2026 23:35:52 INFO  valid result: 
+ndcg@10 : 0.179532    recall@10 : 0.169576    precision@10 : 0.128632
+Fri 16 Oct 2026 23:35:52 INFO  epoch 36 training [time: 0.11s, train loss: 20.0435]
+Fri 16 Oct 2026 23:35:52 INFO  epoch 36 evaluating [time: 0.04s, valid_score: 0.175362]
+Fri 16 Oct 2026 23:35:52 INFO  valid result: 
+ndcg@10 : 0.175362    recall@10 : 0.16424    precision@10 : 0.12492
+Fri 16 Oct 2026 23:35:52 INFO  epoch 37 training [time: 0.10s, train loss: 20.1227]
+Fri 16 Oct 2026 23:35:52 INFO  epoch 37 evaluating [time: 0.04s, valid_score: 0.182314]
+Fri 16 Oct 2026 23:35:52 INFO  valid result: 
+ndcg@10 : 0.182314    recall@10 : 0.169222    precision@10 : 0.129586
+Fri 16 Oct 2026 23:35:52 INFO  epoch 38 training [time: 0.11s, train loss: 20.1537]
+Fri 16 Oct 2026 23:35:53 INFO  epoch 38 evaluating [time: 0.04s, valid_score: 0.183131]
+Fri 16 Oct 2026 23:35:53 INFO  valid result: 
+ndcg@10 : 0.183131    recall@10 : 0.168275    precision@10 : 0.129056
+Fri 16 Oct 2026 23:35:53 INFO  epoch 39 training [time: 0.11s, train loss: 20.1295]
+Fri 16 Oct 2026 23:35:53 INFO  epoch 39 evaluating [time: 0.04s, valid_score: 0.184057]
+Fri 16 Oct 2026 23:35:53 INFO  valid result: 
+ndcg@10 : 0.184057    recall@10 : 0.167626    precision@10 : 0.129905
+Fri 16 Oct 2026 23:35:53 INFO  Saving current: /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:53 INFO  epoch 40 training [time: 0.11s, train loss: 20.1726]
+Fri 16 Oct 2026 23:35:53 INFO  epoch 40 evaluating [time: 0.06s, valid_score: 0.181965]
+Fri 16 Oct 2026 23:35:53 INFO  valid result: 
+ndcg@10 : 0.181965    recall@10 : 0.163249    precision@10 : 0.127996
+Fri 16 Oct 2026 23:35:53 INFO  epoch 41 training [time: 0.11s, train loss: 20.0653]
+Fri 16 Oct 2026 23:35:53 INFO  epoch 41 evaluating [time: 0.04s, valid_score: 0.181541]
+Fri 16 Oct 2026 23:35:53 INFO  valid result: 
+ndcg@10 : 0.181541    recall@10 : 0.162824    precision@10 : 0.127678
+Fri 16 Oct 2026 23:35:53 INFO  epoch 42 training [time: 0.11s, train loss: 20.1334]
+Fri 16 Oct 2026 23:35:53 INFO  epoch 42 evaluating [time: 0.04s, valid_score: 0.182705]
+Fri 16 Oct 2026 23:35:53 INFO  valid result: 
+ndcg@10 : 0.182705    recall@10 : 0.170941    precision@10 : 0.130117
+Fri 16 Oct 2026 23:35:53 INFO  epoch 43 training [time: 0.11s, train loss: 20.1636]
+Fri 16 Oct 2026 23:35:53 INFO  epoch 43 evaluating [time: 0.04s, valid_score: 0.179998]
+Fri 16 Oct 2026 23:35:53 INFO  valid result: 
+ndcg@10 : 0.179998    recall@10 : 0.166997    precision@10 : 0.126829
+Fri 16 Oct 2026 23:35:53 INFO  epoch 44 training [time: 0.10s, train loss: 20.1080]
+Fri 16 Oct 2026 23:35:53 INFO  epoch 44 evaluating [time: 0.04s, valid_score: 0.180116]
+Fri 16 Oct 2026 23:35:53 INFO  valid result: 
+ndcg@10 : 0.180116    recall@10 : 0.166561    precision@10 : 0.128314
+Fri 16 Oct 2026 23:35:54 INFO  epoch 45 training [time: 0.10s, train loss: 20.1518]
+Fri 16 Oct 2026 23:35:54 INFO  epoch 45 evaluating [time: 0.04s, valid_score: 0.180055]
+Fri 16 Oct 2026 23:35:54 INFO  valid result: 
+ndcg@10 : 0.180055    recall@10 : 0.165761    precision@10 : 0.127572
+Fri 16 Oct 2026 23:35:54 INFO  epoch 46 training [time: 0.11s, train loss: 20.1247]
+Fri 16 Oct 2026 23:35:54 INFO  epoch 46 evaluating [time: 0.04s, valid_score: 0.181074]
+Fri 16 Oct 2026 23:35:54 INFO  valid result: 
+ndcg@10 : 0.181074    recall@10 : 0.168251    precision@10 : 0.12789
+Fri 16 Oct 2026 23:35:54 INFO  epoch 47 training [time: 0.11s, train loss: 20.0943]
+Fri 16 Oct 2026 23:35:54 INFO  epoch 47 evaluating [time: 0.04s, valid_score: 0.182860]
+Fri 16 Oct 2026 23:35:54 INFO  valid result: 
+ndcg@10 : 0.18286    recall@10 : 0.171606    precision@10 : 0.12895
+Fri 16 Oct 2026 23:35:54 INFO  epoch 48 training [time: 0.11s, train loss: 20.0111]
+Fri 16 Oct 2026 23:35:54 INFO  epoch 48 evaluating [time: 0.04s, valid_score: 0.181320]
+Fri 16 Oct 2026 23:35:54 INFO  valid result: 
+ndcg@10 : 0.18132    recall@10 : 0.170025    precision@10 : 0.128102
+Fri 16 Oct 2026 23:35:54 INFO  epoch 49 training [time: 0.11s, train loss: 20.1051]
+Fri 16 Oct 2026 23:35:54 INFO  epoch 49 evaluating [time: 0.04s, valid_score: 0.182494]
+Fri 16 Oct 2026 23:35:54 INFO  valid result: 
+ndcg@10 : 0.182494    recall@10 : 0.17027    precision@10 : 0.131071
+Fri 16 Oct 2026 23:35:54 INFO  epoch 50 training [time: 0.10s, train loss: 20.1262]
+Fri 16 Oct 2026 23:35:54 INFO  epoch 50 evaluating [time: 0.04s, valid_score: 0.184009]
+Fri 16 Oct 2026 23:35:54 INFO  valid result: 
+ndcg@10 : 0.184009    recall@10 : 0.170325    precision@10 : 0.131283
+Fri 16 Oct 2026 23:35:54 INFO  Finished training, best eval result in epoch 39
+Fri 16 Oct 2026 23:35:54 INFO  Loading model structure and parameters from /Users/minseok/Desktop/RS/RS_HW1/saved/bpr/20261016_233539_473703/BPR_dim64_lambda0.1/BPR-Oct-16-2026_23-35-47.pth
+Fri 16 Oct 2026 23:35:54 INFO  Best validation: OrderedDict([('ndcg@10', 0.184057), ('recall@10', 0.167626), ('precision@10', 0.129905)])
+Fri 16 Oct 2026 23:35:54 INFO  Test result: OrderedDict([('ndcg@10', 0.230547), ('recall@10', 0.196683), ('precision@10', 0.154613)])

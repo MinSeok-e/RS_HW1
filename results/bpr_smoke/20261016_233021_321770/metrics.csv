@@ -1,0 +1,2 @@
+run_id,mode,model,embedding_size,reg_lambda,seed,epochs,valid_ndcg@10,valid_recall@10,valid_precision@10,test_ndcg@10,test_recall@10,test_precision@10
+20261016_233021_321770,smoke,RegularizedBPR,64,0.1,2020,2,0.01132,0.008333,0.01071,0.011936,0.007436,0.011559

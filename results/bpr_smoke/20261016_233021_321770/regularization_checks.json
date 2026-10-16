@@ -1,0 +1,23 @@
+[
+  {
+    "reg_lambda": 0.0,
+    "ranking_loss": 0.6873375773429871,
+    "regularization_before_lambda": 0.127096489071846,
+    "total_loss": 0.6873375773429871,
+    "loss_and_gradient_check": "passed"
+  },
+  {
+    "reg_lambda": 0.1,
+    "ranking_loss": 0.6873375773429871,
+    "regularization_before_lambda": 0.127096489071846,
+    "total_loss": 0.7000472545623779,
+    "loss_and_gradient_check": "passed"
+  },
+  {
+    "reg_lambda": 0.5,
+    "ranking_loss": 0.6873375773429871,
+    "regularization_before_lambda": 0.127096489071846,
+    "total_loss": 0.7508858442306519,
+    "loss_and_gradient_check": "passed"
+  }
+]

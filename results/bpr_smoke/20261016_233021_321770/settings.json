@@ -1,0 +1,11 @@
+{
+  "mode": "smoke",
+  "model_implementation": "RegularizedBPR",
+  "dataset": "ml-100k",
+  "embedding_size": 64,
+  "reg_lambda": 0.1,
+  "weight_decay": 0.0,
+  "seed": 2020,
+  "epochs": 2,
+  "checkpoint_dir": "/Users/minseok/Desktop/RS/RS_HW1/saved/bpr_smoke/20261016_233021_321770"
+}

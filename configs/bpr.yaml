@@ -1,0 +1,10 @@
+embedding_size: 64
+reg_lambda: 0.1
+weight_decay: 0.0
+
+train_neg_sample_args:
+  distribution: uniform
+  sample_num: 1
+  alpha: 1.0
+  dynamic: false
+  candidate_num: 0
