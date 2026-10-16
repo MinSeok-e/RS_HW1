@@ -5,7 +5,3 @@ __pycache__/
 .DS_Store
 saved/
 log_tensorboard/
-
-# Local runtime and installation logs
-/log/
-/logs/*.log
